@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <head>
+     //luis nova
+     //28263@llinstitute.com
+     <link rel="stylesheet" type="text/css" href="index.css"></link>
+  </head>
+  <body>
+    <h1>Calculator</h1>
+
+    <label for="input">please input the value:</label>
+    <input type="text" id="result" disabled=true /> <br /> 
+
+
+    <br />
+
+    <input type="text" id="number" name="number" />
+    <button type="button" onclick="addresult();">Add</button><br /><br />
+
+    <button type="button" onclick="erase();">erase</button><br /><br />
+    <button type="button" onclick="list();">list</button><br /><br />
+    <p id="demo"></p>
+
+<script>
+
+
+    class AvgCalculator {
+
+      constructor() {
+        this.numbers = [];
+    }
+
+
+
+    addNumber(newNumber) {
+
+        this.numbers.push(newNumber);
+    }
+
+
+
+    solve() {
+
+        if (this.numbers.length === 0) {
+            return 0;
+        }
+
+
+
+
+        var i;
+        var sum = 0;
+        for (i = 0; i < this.numbers.length; i++) {
+            sum += this.numbers[i];
+            console.log(sum)
+        }
+        return sum / this.numbers.length;
+        }
+        erase(){
+         var length = this.numbers.length
+
+        this.numbers.splice(0,length);
+
+        }
+        list (){
+         var text,i;
+
+        text = "<ol>";
+        for (i = 0; i < this.numbers.length; i++) {
+
+        text = text + "<li>" + this.numbers[i] + "</li>" + "<br>";
+        }
+        text = text + "</ol>";
+        return text;
+        }
+        }
+
+
+
+
+
+       var calc = new AvgCalculator();
+
+
+
+    function addresult() {
+        var number = parseFloat(document.getElementById("number").value);
+        calc.addNumber(number);
+        var result = calc.solve();
+        console.log (result);
+
+
+       document.getElementById("result").value = result;
+       }
+
+    function erase() {
+       var erase = parseFloat(document.getElementById("number").value);
+
+       var result = calc.erase();
+       console.log (result);
+
+       document.getElementById("demo").innerHTML = result;
+       document.getElementById("result").value = result;
+       }
+
+   function list() {
+       var list = parseFloat(document.getElementById("number").value);
+       calc.addNumber(list);
+       var result = calc.list();
+       console.log (result);
+
+
+      document.getElementById("demo").innerHTML = result;
+      }
+
+
+</script>
+
+</body>
+</html>
